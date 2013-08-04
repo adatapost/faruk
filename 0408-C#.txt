@@ -1,0 +1,82 @@
+DateTime methods
+======================================================
+1. DateTime.Now   -- It returns "local" system datetime object
+2. DateTime.UtcNow -- Returns "Universal Time (GMT)" DateTime object.
+
+
+ Console.WriteLine(DateTime.Now);
+ Console.WriteLine(DateTime.UtcNow);
+
+3. Access DateTime parts using Day, Month, Hour etc...
+ 
+  DateTime now = DateTime.Now;
+  Console.WriteLine(now.Day); // 4
+  Console.WriteLine(now.Hour); 
+
+4. Create DateTime object with user defined date time.
+
+   DateTime bdate = DateTime.Parse("12/31/2001 10:20:33 PM");
+   //Or you can use TryParse() method.
+
+   Console.Write(string.format(@"
+{0}st {1} - {2} is my birth date ",bdate.Day, 
+                                  bdate.ToString("MMMM"),
+                                  bdate.Year));
+  
+
+5. Add days, hours, mins, year etc (Use negative value to subtract    days, hours etc).
+
+    DateTime dt = DateTime.Now;
+    Console.WriteLine("Current Date : " + dt);
+    //Add five days to current date
+    dt = DateTime.Now.AddDays(5);
+    Console.WriteLine(dt);
+
+    //add 10 years to current Date
+
+    Console.WriteLine( DateTime.Now.AddYears(10) );
+
+    //Subtract 100 days from current date
+
+     Console.WriteLine ( DateTime.Now.AddDays(-100) );
+
+EX: Display day name and year of 10 birthdates from 2012
+
+    DateTime dt = DateTime.Parse("12/5/2012");
+    
+    for(int i=1;i<=10;i++)
+    {
+        dt = dt.AddYears(1);
+        Console.WriteLine( dt.ToString("dddd - yyy"));
+     }
+   
+6. Comparing DateTime objects
+
+    int DateTime.Compare(dateObj1, dateObj2);
+
+    It returns 0 if dateObj1 is equals to dateObj2
+              >0 if dateObj1 is greater than dateObj2
+              <0 if dateObj1 is less than dateObj2
+Ex:
+        DateTime dt1 = DateTime.Parse("12/6/2012 1 AM");
+        DateTime dt2 = DateTime.Parse("12/6/2012");
+
+        if (DateTime.Compare(dt1, dt2) > 0)
+            Console.WriteLine("dt1 > dt2");
+        else
+            if (DateTime.Compare(dt1, dt2) < 0)
+                Console.WriteLine("dt1 < dt2");
+            else
+                Console.WriteLine("dt1 eq dt2");
+
+TimeSpan struct to find the differences in days, mins, secs or millis between two DateTime objects.
+-------------------------------------------------------------------
+
+    DateTime dt1 = DateTime.Parse("8/4/2013");
+    DateTime dt2 = DateTime.Parse("8/1/2013");
+    
+    TimeSpan diff = dt1 - dt2;
+
+    Console.WriteLine("Days : " + diff.TotalDays);
+    Console.WriteLine("Hours : " + diff.TotalHours);
+

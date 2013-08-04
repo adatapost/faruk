@@ -1,0 +1,233 @@
+Importing the namespace -- using statement
+=====================================================================
+
+In previous example, we've use "Console.WriteLine" with the help of "System" namespace.
+
+ In .net framework, each type must be fully qualified in order to use it in your code.
+
+ The C# compiler has a directive called "using" through which the C# compiler qualify all TYPES  which belongs to the "given" namespace implicitly (automatically) instead of adding "System" or other namespace to each type.
+
+Syntax:
+
+using Namespace;
+using Namespace.SubNamespace;
+
+Ex:
+
+using System;
+
+class Test
+{
+   static void Main()
+    {
+       Console.WriteLine("Now, no need to add System. The compiler will adds it automatically.");
+
+       System.Console.WriteLine("However, we are free to add full path");
+     }
+}
+
+
+Create alias of "TYPE"
+-----------------------------------------------------------
+
+The "using" directive also used to create alias.
+
+Syntax:
+
+using alias = Namespace.TypeName;
+
+e.g
+
+using cn = System.Console;
+
+class Test
+{ 
+   static void Main()
+    { 
+      cn.WriteLine("\nNo\t\tName");
+      cn.WriteLine("10\t\tMr.A");
+     }
+}
+
+"cn' is an alias of System.Console class for this particular code file.
+
+
+Strings
+================================================================
+
+C# string is collection of System.Char and it support "Escape" sequence characters including \n \t \b  \r etc.
+
+
+To unescape backslash characters, append extra backslash (\).
+
+        string path = "c:\new folder\test";
+        Console.WriteLine(path);
+        path = "c:\\new folder\\test";
+        Console.WriteLine(path);
+
+Ex: Program to print -- The "Red" sun.
+
+        string str = "The \"Red\" sun";
+        Console.WriteLine(str);
+        Console.WriteLine("This \"is\" the last man on \"the\"                             earth.");
+
+@ - The verbetim operator : This operator unescape the string and also allow us to write mult-line text.
+
+    string path=@"c:\new folder\test";
+    string info=@"
+         Dear Sir,
+            
+         I'm Mr.A .... 
+         
+         Thanks";
+    Console.WriteLine(path);
+    Console.WriteLine(info);
+
++ - String concat operator : Any data value used with string variable or literal will be converted to string automatically (implicitly).
+
+Ex:
+
+       int no1 = 10, no2 = 20;
+
+        Console.WriteLine("Sum : " + no1 + no2);
+        Console.WriteLine("Sum : " + (no1 + no2));
+
+        int age = 10;
+        string name = "Mr.A";
+
+        string info = "My name is " + name 
+                    + " and I'm " + age 
+                    + " year old";
+        Console.WriteLine(info);
+
+
+string.Format() - method to concat the data value. The "Format" method uses "place-holders (blanks)" to fill them with value.
+
+       int age = 10;
+       string name = "Mr.A";
+ 
+       string info = string.Format("Hello my name is {0} and I'm {1}                                    year old",name,age);
+       Console.WriteLine(info);
+
+   {0} is first parameter belongs to "name" variable and
+   {1} is second parameter belongs to "age" variable.
+
+Ex:
+     int no1= 10, no2=20;
+
+     Console.WriteLine(string.Format("Sum of {0} and {1} is {2}",no1,no2,no1+no2));
+
+
+Multi-lingual support -- string type allow us to store alphabets (or charset) of different languages.
+
+   string str = "\u0aa9\u0aaa";
+   Console.WriteLine(str); // Command prompt cannot display text other                            // than english charset. Try GUI win or web
+                           // to display characters.
+
+
+Simple Types and their methods/fields
+-------------------------------------------------------------
+
+1. Determine the max-min range of "Type".
+
+    Console.WriteLine(ushort.MinValue + "  " + ushort.MaxValue);  
+  
+    You can use any simple type to examine min-max range.
+
+2. String "string" data value to Simple TYPE.
+
+    The "Parse" method will parse "string" data to simple value type.
+
+    string str = "10";
+    int no = int.Parse(str); 
+    Console.WriteLine(no*no);
+
+    str = "10.10";
+
+    double value = double.Parse(str);
+    decimal value1 = decimal.Parse(str);
+
+    Console.WriteLine(value + " " + value1);
+
+    str = "12/31/2010"; // date format must be mm-dd-yyyy 
+
+    DateTime date = DateTime.Parse(str); 
+    Console.WriteLine(date);
+
+    str = "12/31/2001 10:4:4 PM";
+    date = DateTime.Parse(str);
+    Console.WriteLine(date);
+
+NOTE: The "Parse" method will throws an exception (error) when that string contains invalid form of "data".
+
+       e.g    
+         int.Parse("10.10");  //String contains invalid integer value
+          DateTime.Parse("31/12/2002"); // invalid date
+
+
+Parse with "fallback" ---- TryParse() method
+------------------------------------------------------------------
+This is safe parse way. In this way, an exception is handled by this method and returns false when parse failed, returns true otherwise.
+
+ Syntax:
+
+   TypeName.TryParse(string input, out TypeName varName);
+
+  The "out" is keyword and is called "reference" parameter. (Equivalent   to & (reference) operator in C++)
+
+  e.g
+
+    string str = "10";
+    int no;
+    if(int.TryParse(str,out no))
+       Console.WriteLine("Success : " + no);
+    else
+       Console.WriteLine("Failed :" + no);
+
+
+
+ToString() -- parse data of simple type to string with or without using "formats".
+-----------------------------------------------------------
+
+  double amount = 100012.332;
+
+  string str = amount.ToString();
+  Console.WriteLine(str);
+  Console.WriteLine( amount.ToString("N") ); // Number format 
+                                             // 10,00,12.33
+  Console.WriteLine( amount.ToString("C") ); //  Currency format 
+                                             // $10,00,12.33
+
+  Console.WriteLine( amount.ToString("N4")); //four digit decimal place
+
+Use following format character to set custom format of numeric data.
+
+     0
+     #
+     +
+     - and
+     , 
+
+ str = amount.ToString("#,##,###.00");
+
+ DateTime format characters
+ -----------------------------
+ // Today date
+
+  Console.WriteLine(DateTime.Now);
+  DateTime dt = DateTime.Now;
+
+  Console.WriteLine(dt.ToString("dd-MMM-yyy")); // 03-Aug-2013
+  Console.WriteLine(dt.ToString("d/M/yy")); 3/8/13
+  Console.WriteLine(dt.ToString("ddd")); // Sat - day abbr
+  Console.WriteLine(dt.ToString("dddd")); // Saturday
+  Console.WriteLine(dt.ToString("MMM")); // Aug - month abbr
+  Console.WriteLine(dt.ToString("MMMM")); // August
+
+  Console.WriteLine(dt.ToString("hh:mm:ss t")); 02:33:22 PM
+  Console.WriteLine(dt.ToString("HH:mm:ss")); 14:33:22
+
+ 
+
+
+

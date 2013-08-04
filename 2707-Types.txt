@@ -1,0 +1,152 @@
+
+What is reference variable?
+-----------------------------
+
+  "Reference variable" is a special status variable to store                         "reference/address" of heap (object).
+
+  Size(length) of "Reference Variable" is 4 bytes long (After all   reference variable is known as pointer)
+
+  Any variable name you will create using "class", "interface", "array"   or "delegate" is called "Reference  variable".
+
+  e.g
+ 
+    String name="Mr.A";
+          
+      where "name" is reference variable which store memory reference       of an object. The content of an object will be "Mr.A".
+
+
+      name = null;
+
+         This statement will remove memory reference and hence the          Gagbage collector service of Java/.Net will de-allocate the          heap.
+
+
+
+What is "delegate" type?
+
+   The "delegate" type hold/store references of methods including    objects.
+
+    In C/C++, it is known as "function pointer".
+
+
+How CTS is organize or arranged?
+--------------------------------------------------------------
+
+The CTS uses "namespace (package like system of java)" technique to create and organize the TYPES.
+
+   To create fully qualified types, we must have to use "namespace". 
+
+ In other words, With the help of "namespace" we can create "unique" and fully qualified datatypes to avoid name mangling.
+
+
+    Or
+
+ "namespace create a group of related TYPES and keep one group of TYPES away from another group of TYPES".
+
+
+ ALL CTS (Common Types System) are created/placed under the "System" namespace name. The "System" is root/main namespace of all CTS.
+
+For example,
+
+      
+    System.String
+      ^        ^ 
+      |        |----- class 
+   namespace
+      |
+      V
+   System.Int32 <----- struct
+
+      
+   System.Web.Mvc <------ (sub-sub namespace ASP.NET MVC)
+    ^      ^
+    |      |--- sub namespace (ASP.NET)
+ root
+ namespace
+
+ 
+ The ultimate base/super class
+ -------------------------------------------------------
+
+ The System.Object is super class of all CTS and user-defined types.
+
+ 
+ C# 
+
+  class Hello
+   {
+   }
+  
+ Java --- java.lang.Object is super class of All types.
+
+  class Hello
+   {
+    }
+
+
+  is equivalent to
+
+   class Hello extends java.lang.Object {}
+
+ Why platforms uses "namespace/packages" and "ultimate" super class?
+ ----------------------------------------------------------------
+
+  Basically, data-types system is designed by the "unified programming model". Unified Programming Model is standard way to design datatypes and this model defines number of guideline/rules and two of them are as follows:
+
+   1. All TYPES must be created in "named" namespace (i.e fully       qualiifed)
+   2. All TYPES must have equal amount of "framework" ability by       defining the "Ultimate" super class. 
+
+      The "ultimate or root" super classes expose framework essential features including --- 1. Threading
+		       2. Netwroking and
+                       3. Reflection (Introspection)
+
+
+Simple Types (Primitive Types)
+====================================================================
+
+Simple Types are struct (Value Types) and C# language has alias of each CTS simple type except "System.DateTime".
+
+
+CTS Name	C# alias	Size (in bytes)
+=====================================================================
+
+System.SByte	sbyte		1 (signed byte)
+System.Byte	byte		1 (unsigned)
+System.Int16	short		2 (signed)
+System.UInt16	ushort		2 (unsigned)
+System.Int32	int		4 (signed)
+System.UIn32	uint		4 (Unsigned)
+System.Int64	long		8 (signed)
+System.UInt64	ulong		8 (unsigned)
+
+
+System.Single	float		4
+System.Double	double		8
+System.Decimal	decimal		16
+
+System.Char	char		2 (unicode or national character set)
+System.Bool	bool		1 bit
+System.DateTime System.DateTime	8
+
+
+Aliases are second name of "CTS" simple type so you can use CTS or alias to create variables:
+
+  int no = 10
+    
+     is equivalent to,
+
+  System.Int32 no = 10;
+
+
+Here we've two alias of most commonly used "Reference types" are :
+
+System.Object	object		N.A (Not Available)
+System.String   string		N.A
+
+  
+   System.Object and System.String are classes.
+
+
+  
+
+
+

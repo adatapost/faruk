@@ -1,0 +1,135 @@
+The .net framework version 4.5
+----------------------------------------------
+
+  Language : C# 5
+  Core APIs + ASP.NET MVC 4
+  Database : Microsoft SQL Server 2012/2008
+  
+
+What is ".net framework"?
+----------------------------------------------------------
+  
+It is programming and execution environment to develop, deploy and execute an application in highly-distributed environment of the "InternetWork".
+
+The "framework" acts as a "middleware" which provides operating system functionalities in simple yet elegant way.
+
+
+1. Simple Types (Primitive Types)
+2. IO types
+3. Text encoding/decoding types
+4. Network or socket types
+5. Collection framework
+6. Internatinolization (Globlization)
+7. Runtime and refelection API
+    and many more....
+
+    It is imposible to write a code without the help of "Base classes".
+
+Extended class library
+-------------------------
+   Application specific class library which include:
+
+    1. ADO.NET  (Database Integration API)
+    2. EDM - Entity Data Model
+    3. LINQ - Language Integrated Query
+    4. WinForm - Win desktop app API
+    5. WPF - Windows Presentation Framework (Desktop app API)
+    6. ASP.NET - WebForm and MVC
+    7. WCF  - windows Communication Framework
+    8. XML.NET 
+         and so on...
+     
+
+
+3. CLR
+--------------------------------------------------------------
+
+ Note that the CLR cannot execute .net applications but it prepare .net  application for execution.
+
+ The "CLR" is rich runtime environment which handles number of runtime tasks on behalf of the "developers" including :
+
+    => Loading programs from disk or network
+    => Verify the code of loaded programs
+    => Compile MSIL code to Native code (OS instruction)
+    => Memory management & Garbage collection
+    => Threading & multi-task and many more ....
+
+    MSIL (What is MSIL?)
+    ---------------------
+    It is compiler intermediate language. (Microsoft Intermediate     Language). It is language of compilers which are designed using CLS     including : C#, VB.NET, F#, Cobol.NET, Python.NET and many more.
+
+     When we compile C#/VB.NET etc programs, the C#/VB.NET compilers produce MSIL instructions from C#/VB.NET code and store them into .exe (executable) or .dll (dynamic link library) file -- and .dll or .exe file is commonly known as ".net Assembly" or "assembly".
+
+     What is an "assembly"?
+
+     The "assembly" is diployment unit of .net application. 
+     The "executable '.exe' assemblies" must have an entry point method      called -- Main() whereas "DLL assemblies" cannot have such      methods and that's why DLL assemblies are not executed      independently.
+
+
+     An assembly contains :
+ 
+            1. Version, culture and digital certificates
+
+            2. MSIL code (Modules)
+
+            3. TYPE MetaData 
+
+            4. Resources -- graphics,images, documents etc
+
+            
+
+   The OS cannot execute MSIL instructions i.e .net assemblies. So the    CLR's stack services translate MSIL instructions to Native    instructions with the help of Just-In-Time Compiler (JIT).
+
+
+
+Common Types System
+====================
+
+There are over 4000 types in CTS (approximately) and these TYPES falls into two categories based upon memory usage.
+
+How RAM is used by an application?
+-----------------------------------
+ When we run/launch an application, the memory manager of "framework or OS" allocate 1 MB memory for local variables, method parameters, method return value and method calls and this 1 MB memory is known as "Stack Memory".
+
+ If we want to store huge amount of data or we dont want to use "Stack Memory region" then we must have to request the memory manager for more memory. With help of "new" keyword we can request for more memory and this requested allocation of memory is called "Heap Memory" (or "Object").
+
+ Stack Memory size will be 1 MB forever where as size of "heap" can be very from 1 byte to 2 GB or more.
+
+
+  CTS types are :
+
+   1. Value Types
+   2. Reference Types
+
+ Value Types
+ -----------
+  
+  Types having fixed length (size) to store data are called Value    Types.
+
+  Example of Value Types are -- struct and enum
+
+  Variables of Value TYPES always contains value of the type it   belongs.
+
+  Value Types, if used as local variables, method parameters, return     value then they will uses "Stack Memory".
+ 
+  Value Types, if used as "fields or data-member" then they will uses   "Heap".
+ 
+ Reference Types
+ ---------------
+
+  Types having variable length (size) to store data are called   "Reference Types".
+
+  Example of Reference Types are -- class, interface, array and 				    delegate
+
+  Reference Types always uses "Heap memory".
+
+   Variable of Reference Types either contains "null" or "reference of     heap/object".
+
+
+
+
+
+
+
+  
+  

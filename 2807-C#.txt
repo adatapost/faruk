@@ -1,0 +1,217 @@
+C# 5.0 Language
+===================================================================
+
+ C# is :
+
+  1. Case-sensitive language
+  2. Statically typed or Strongly typed language
+  3. Supports object-oriented paradigm
+  4. designed as per Common Language Sepificiation (CLS)
+  5. supports "dynamic" programming language ability.
+
+We'll use C# language to learn and code the .net framework technologies (APIs).
+
+
+Statically typed language : The type of "data" will be examined at the time of compilation and runtime. In other words, type of "value" must be the same which is assigned to it and we cannot change the "type" of value during program execution.
+
+ Java,C# are example of "strongly" typed languages.
+
+    for example (C# or Java):
+
+         float amount = 10.10; <------ 10.10 is  of double type
+ 
+              will causes compile time errors...
+
+    To fix this issue, use "F" or "f" suffix.
+
+         float amount = 10.10f; <---- now it is float
+
+
+What "is" OOP?
+
+    It is a new design to write programing code. This design offers:
+	
+	1. Code resuability
+	2. Data & procedure abstraction
+ 	3. Data encapsulation
+	4. Polymorphism
+	5. Generic or Type parameter
+
+    to develop industry standard applications, libraries, frameworks     and so on.
+
+    C#, Java, PHP, VB.NET, C++, Ada, Python, Ruby and many more     programming languaes supports two or more program designs.
+
+    For example,
+
+         C# offers linear, modular, object-oriented and functional 	paradigm and it is developer's job to select appropriate 	program design in order to solve programming issues.
+
+	But the most important feature of C# is that all different 	designs are (lived)based upon the OOP.
+
+
+What is "dynamic" language?
+
+Language has ability to change the "type" of variable during program execution is known as "dynamic" language.
+
+
+How to learn C# language from the scratch?
+------------------------------------------
+
+To learn a new language,
+  => start coding with simple user-interface (like command prompt)      without bunch of development files.
+  => Learn the basics -- types system, operators, basic i/o methods,
+     identifiers, naming conventions and so on.
+
+The Visual Studio has "Console Application" project template which offer simple user-interface and program input/output will be from "command" window.
+
+Program file and structure of program
+---------------------------------------
+C# code will be stored into .cs file and this file is called "Compilation unit".
+
+You can three types of statements in .cs file in following order.
+
+ 1. compiler directives (e.g #define etc)
+ 2. using statement (Importing the namespace
+ 3. Type definitions (classes, interfaces, enums, structs etc...)
+
+Entry point method "Main()"
+-------------------------
+
+The "console application" requires a "Main" method and you can choose one of the four signatures:
+
+  1. static void Main()
+  2. static int Main()
+  3. static void Main(string []args)
+  4. static int Main(string []args)
+
+and "Main" method (whose first letter 'M' must be capitalize) is placed in your "class" datatype.
+
+
+
+Example : File + New + Project + Visual C# + Console Application
+               + select your "own" folder to create project
+               + name your project 
+
+          You'll found the Program.cs with some code. Now, remove all code from program.cs and write down following code:
+
+
+class MyFirstApp <--- class name is user-defined
+{
+   static void Main()
+    {
+      System.Console.WriteLine("This is the first .net app.");
+    }
+}
+
+
+"class", "static", "void" are keywords and keywords in C# must be written in lowercase letters.
+
+System.Console.WriteLine : "System" is namespace
+			   "Console" is class
+                           "WriteLine" is a method
+
+To debug (run) application:
+
+  1. Press F5 or Debug + Start Debugging (Launch application with the
+	help of Visual Studio]
+  2. Press Ctrl + F5 or Debug  + Start Without Debugging [No VS effort 			to run application]
+
+
+
+Local variables
+===============
+Variable declared inside the "method" body are called "local" variables and local variable must be "assigned" or "initialized" before their use.
+
+
+Following code wont compiled:
+
+  class Test
+  {
+    static void Main()
+      {
+         int no; 
+         System.Console.WriteLine(no);
+       }
+   }
+ because "no" is not assigned or initialized.
+
+To fix this issue, change :
+    int no = 10;   <--- Initialization
+
+    or  
+    int no;
+    no = 10;       <--- Assignment
+
+
+Literals (Constant values)
+===============================================================
+
+C# literals are expressed via "value" and C# compiler will choose data-type for them.
+
+1.  integer literals can be decimal, hexa decimal, or octal
+
+    for example,
+
+     int num1 = 100; //decimal
+     int num2 = 0xff; //hexadecimal - 0x prefixed value is hexa
+     int num3 = 012; // octal -- "0" prefixed value is octal
+
+2. long literal can be expressed by appending "L" or "l" suffix to
+    integer literal.
+
+     long num1 = 100L;
+     long num2 = 0xFFFL;
+
+3. float literal is expressed by using "F" or "f" suffix
+
+     float amount = 10.10f;
+
+4. double literal do not have suffix.
+
+     double amount = 10.10;  //real value will be double type 			     // automatically
+
+5. decimal literal uses "M" or "m" suffix
+
+    decimal amount = 10.10m;
+
+6. boolean literal uses true or false keywords
+
+    bool status = true; //or false
+
+7. char literal is denoted by single quote:
+
+     1. for ANSI literal
+
+          char ch = 'A'; 
+          char ch1  = '?';
+
+     2. for UNICODE Literal
+
+          char ch = '\u0923'; // devnagari alphabet 
+        
+           \u+ four digit hexa decimal value
+8. String literal is denoted by double quotes
+
+     String name = "Hello World";
+
+9.  null literal means "missing object".
+  
+     String name = null; 
+
+    
+
+
+    
+
+
+
+  
+        
+
+
+
+
+
+
+ 
+
+

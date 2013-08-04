@@ -1,0 +1,126 @@
+The class and object
+==================================================================
+
+ What "is" a class?
+ -------------------
+
+      In general, the "class" is synonym of "data-type".
+
+      In programming environment, the "class" keyword is used to
+      create "new datatype (or new class)".
+
+      In theory, the class is blue-print of an object (memory  or       heap). As per blue-print, the memory manager will allocate       memory.
+
+ What "is" an object?
+ ---------------------
+
+      The "partitioned" area of memory that is allocated by the
+      memory manager or OS. (i.e collection of reserved bytes is called
+      an object or heap.)
+
+  
+ What "is" Object-Oriented Paradigm?
+ -----------------------------------
+
+      It is new way or new design to code the program which offers       following facilities:
+
+            1. Improve the developer's productivity by creating re-               usable components (classes).
+            2. Extendibility -- Developer can improvise the code by 		creating new types from existing without affecting 
+	        functionalities of existing types.
+            3. Visibility ----- Developer can "hide" or "show" code or                 functionalities.
+            4. Developer can create "Open TYPES" to "CREATE ONCE USE                MANY TIMES" approach.
+    
+Access modifiers or access control keywords
+=====================================================================
+
+ C# has five access modifiers :
+
+    1. public 
+    2. private
+    3. protected
+    4. internal
+    5. protected internal
+
+ to set visibility of "TYPE" and its "Members". It is one of the  different techniques to implement "Abstraction" (It is technique to add outline or wall between creator of code and user of code -- There will be 1. Data Abstraction and 2. Procedure Abstraction ).
+
+
+1. public : public "entities" are accessible anywhere -- inside or             outside the project/assembly.
+
+2. private : private "entities" are visible inside the containing type
+	     in which they are created.
+
+3. protected : protected "entities" are visible inside the containing                type or its sub-classes.
+
+4. internal : internal "entities" are visible inside the               project/assembly only. They are invisible outside the
+              project.
+5. internal protected
+   or protected internal : These "entities" are visible inside the                            project/assmebly or sub-classes in other
+			   projects/assemblies.
+
+
+
+ 
+Top-level types in .net framework must be either "public" or "internal". If access modifier is not specified then the default will be "internal".
+
+e.g
+
+class A{}   <-- default is internal
+public class B{}
+internal class C{}
+
+private class P { } <----- Illegal
+
+Nested members have following access modifiers:
+
+TypeName	Default access    	Can be changed
+------------------------------------------------------------
+class		private			private, public, internal,
+					protected or protected internal
+
+  e.g
+       class Hello
+        {
+             private int no; <--- private
+
+              void test() <---- private
+              class Hi {} <---- private
+              public class T{}
+              ...
+         }
+
+interface	public			Not Allowed
+
+struct		private			public, private, internal
+					(struct cannot be inherited)
+
+enum		public			Not Allowed
+
+delegate	---- delegate type have no members -----
+
+
+ 
+
+Examine the access modifiers:
+
+
+class Test
+{
+    int a;
+    protected int b;
+    public int c;
+    internal int d;
+    internal protected int e;
+}
+class First
+{
+    static void Main()
+    {
+        Test x = new Test();
+        x.a  = 10; //error -- not visible
+        x.b = 10; //error  -- not visible
+        x.c = 10; //OK
+        x.d = 10; //OK
+        x.e = 10; //OK
+    }
+}
+
