@@ -1,0 +1,253 @@
+Class members
+=================================================================
+A class definition either contains "static" or "non-static or instance" members.
+
+The "static" storage modifier is used to create "static (global)" members where as non-static members do not use static modifiers.
+
+
+static fields and static methods
+--------------------------------
+
+  static fields
+  --------------
+  The static field will be created (or allocated) before any of the member of that class is accessed very first time and they are released when the application is shutdown or terminate.
+
+  static methods
+  ----------------
+  The static methods, generally, used with static fields to set/retrive   value but they can be used for different purposes.
+
+  static fields or methods, if they are accessible outside the class   then they will be accessed via "ClassName.MemberName" syntax. 
+
+
+instance fields and instance methods (non-static)
+-----------------------------------------
+
+  instance fields or data-member
+  -------------------------------
+  The "new" keyword allocate memory of non-static fields or new keyword   create the instance fields.
+
+  instance methods
+  --------------------------------
+  The instance methods are designed to add object/instance specific   tasks and they are invoked with the help of reference variable which contains memory reference of an object or from object reference directly.
+
+
+
+Understanding the object and reference variable
+-------------------------------------------------------------
+
+ class Test
+  {
+      public int no;         //instance field
+      public static int no1; //static field
+  }
+ All instance & static fields are initialized automatically with default value of diferent types. All value types fields are initialized  using ZERO based value :
+ 
+    byte, short, int , long, float, double, decimal has 0 default value
+    bool has false default value
+    char has '\0' or \u0000' ASCII Null
+
+All reference types fields are initialized with null.
+
+  class TestMain
+   {
+     static void Main()
+      {
+          Console.WriteLine(Test.no1); //  0
+          Test.no1 = 100;
+
+          Test test;    // Reference variable (4 bytes long)
+
+          test = new Test(); //Allocate memory for instance fields
+ 
+          test.no = 10;
+          Test best = new Test(); 
+           best.no = 20;
+          Console.WriteLine(Test.no1 + " " + best.no + " " + test.no);
+       }
+    }
+
+ What will be the output?
+ class Test{
+    public int no;
+ }
+
+code in Main:
+   Test a = new Test();
+   Test b=a;       /* copy/assign object reference */
+   a.no = 10;
+   b.no = 20;
+   Console.WriteLine(a.no + " " + b.no); // 20  20
+
+Example:
+
+ class TestMain
+   {
+   static void show(Test n)
+    {
+        n.no = 200;
+     }
+   static void print(int n)
+     {
+        n =200;
+      }
+   static void Main()
+    {
+         int a=1,n=2;
+         print(a);
+         print(n);
+         Console.WriteLine(a + " " + n); //1  2
+ 
+         Test b = new Test();
+         b.no = 10;
+         show(b);
+         Console.WriteLine(b.no); // 20
+      }
+}
+
+Method parameter category in C#
+===========================================================
+In C#, default method parameter category is "Called By Value or Passed by Value" of any method.
+
+You can change this parameter category for method using the "out" or "ref" keywords. The "out" and "ref" parameters are known as "Called By Reference".
+
+class TestMain
+{
+   static void func1(out int n)
+    {
+       n = 10; 
+     }
+   static void func2(ref int n)
+    {
+       n =10; 
+     }
+   static void Main()
+    {
+       int a = 1, n = 2;
+       func1(out a);
+       func2(ref n);
+       Console.WriteLine(a + " " + n); // 10 10
+      }
+  }
+
+
+Reference operators "out" or "ref" creates an alias of actual parameter  so changes in formal parameter will update the same object value that is hold by actual parameter.
+
+What is diff between out and ref operators?
+-------------------------------------------
+
+ > The out parameter must be assigned within the method body where as    in case of "ref" may or may not.
+
+ > The out parameter do not expose the underlying value so we cannot have value of out parameter in method where as ref parameter expose the value into the method body.
+
+ static void func1(out int no) 
+  {
+   }
+  is throwing error because no is not assigned
+
+ static void func1(out int no) 
+  {
+  no++;
+   }
+ also throwing error because value of "no" is not available (i.e it is unassigned).
+
+Basic guideline to develop class
+================================================================
+
+1. Do not create types in "global" namespace. 
+   NOTE: Before this, we've created classes in "global" namespace.
+    
+2. Classes should be public
+
+3. Fields must be "private"
+
+4. Constructor should be public
+
+5. Method should be public
+
+6. Use lowercase or camelCase to name the private fields and local     variables.
+
+7. Use TitleCase -- Capitalize the first letter of each word -- for    class name, method and property name.
+
+8. Add "Getter" and "Setter" method to expose the private fields.
+
+9. Override necessary methods of System.Object class. (We'll learn       Equals, GetHashCode, ToString etc in later session)
+
+10. Use TitleCase to name the Namespace.
+
+Example:
+
+namespace HelloNs
+{
+    public class Student
+    {
+        //fields
+        private int roll;
+        string name;
+
+        //constructors
+        public Student() // No argument
+        {
+            name = ""; // string.Empty;
+        }
+        public Student(int roll, string name) // to parameter
+        {
+            SetRoll(roll);
+            SetName(name);
+        }
+
+        //Getter  -- To return value from private fields
+
+        public int GetRoll() { return roll; }
+        public string GetName() { return name; }
+
+        //Setter - To set value to private fields
+        public void SetRoll(int roll) 
+        {
+            if(roll >=1 && roll<= 100)
+                this.roll = roll; 
+        }
+        public void SetName(String name) 
+        {
+            if (this.name == null)
+                this.name = string.Empty;
+            if (name == null)
+                return;
+            if (name.Length >= 1 && name.Length <= 50)
+                this.name = name;
+        }
+    }
+
+    class TestMain
+    {
+        static void Main()
+        {
+           //Test the code by supplying different values.
+           //Note: This technique to verify the code is called
+           //      Unit-testing
+            Student std = new Student(10, null);
+            
+            Console.WriteLine(std.GetName().Length);
+            Console.WriteLine(std.GetRoll() + " " + std.GetName());
+
+            std.SetName("Mr.A");
+            Console.WriteLine(std.GetRoll() + " " + std.GetName());
+
+            std.SetRoll(-100);
+            Console.WriteLine(std.GetRoll() + " " + std.GetName());
+
+             //Test - one
+             string actual_value = null;
+             string expected_value = "";
+             
+             std = new Student(1,actual_value);
+             if(std.GetName() == expected_value)
+                  Console.WriteLine("passed");
+             else
+                  Console.WriteLine("failed");
+        }
+    }
+}
+
+
+  
+  

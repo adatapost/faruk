@@ -1,0 +1,228 @@
+Property Methods
+-------------------------------------------------------------------
+
+ Property is special status method (either instance of static) of C#  class to set value to private fields and get value from private field   or from computed result.
+
+ Syntax:
+  
+   access DataType  PropertyName
+    {
+       get
+         {
+           //
+         }
+      set
+         {
+          //
+         }
+    }
+
+  The "DataType" at property declaration will be the return type and   parameter of "PropertyName" method. 
+
+  The body of "Property" is composed by "get" or "set" or both (get &   set) accessors.
+
+  The "get" accessor returns value of type specified at property   declaration. 
+
+  The "set" accessor has "value" implicit parameter name through which   we can assign value to fields or use "value" data.
+
+ In previous session, we've use GetRoll(), SetRoll()  -- pair of  methods to return value or set value from/to "roll" field  respectively.
+
+ Example:
+
+ public class Student
+    {
+        private int _roll;
+        private string _name;
+
+        public int Roll
+        {
+            set
+            {
+                _roll = value;
+            }
+            get
+            {
+                return _roll;
+            }
+        }
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+    }
+    class Test
+    {
+        static void Main()
+        {
+            Student student = new Student();
+            student.Roll = 10;   // assignment operator will invoke
+				 // "set" accessor
+            student.Name = "Mr. ABC";
+            Console.WriteLine(student.Roll + " " + student.Name);
+        }
+    }
+ If "PropertyName" is used without assignment operator then the "get"  accessor will be invoked.
+
+Example: Define "Student" class with roll, name, english, maths, and science fields.
+
+  1. Add necessary constructors
+  2. Add "Five" properties for roll,name,english,maths and science
+  3. Add additional computed properties:
+             Total, Percent and Grade
+  5. Add PrintStudent() method to print data.
+
+
+public class Student
+    {
+        //fields -- private
+        int roll, english, maths, science;
+        string name;
+
+        //properties
+        public int RollNo { get{return roll;} set{roll = value; }}
+
+    public string Name {get{ return name; } set { name = value;} }
+    public int English {get{return english;}set{english = value; } }
+    public int Science{get { return science; }set { science = value;} }
+    public int Maths { get { return maths; } set { maths = value; } }
+
+     public int Total  {
+            get
+            {
+                return english + science + maths;
+            }
+        }
+        public double Percent{get{return Total / 3.0;}}
+        public string Grade 
+           {
+            get
+            {
+                double per = Percent;
+                if (per >= 70) return "A";
+                if (per >= 60) return "B";
+                return "C";
+            }
+        }
+        //constructors
+        public Student(){  name = ""; }
+        public Student(int roll, string name, int english, int maths, int science)
+        {
+            this.roll = roll;
+            this.name = name;
+            this.maths = maths;
+            this.english = english;
+            this.science = science;
+        }
+
+        public void PrintStudent()
+        {
+            Console.WriteLine("******* Student Card *******");
+            Console.WriteLine("Roll......: " + RollNo);
+            Console.WriteLine("Name      : " + Name);
+            Console.WriteLine("English   : " + English);
+            Console.WriteLine("Maths     : " + Maths);
+            Console.WriteLine("Science   : " + Science);
+            Console.WriteLine("===============================");
+            Console.WriteLine("Total     : " + Total);
+            Console.WriteLine("Percent   : " + Percent.ToString("N"));
+            Console.WriteLine("Grade     : " + Grade);
+        }
+    }
+    class Test
+    {
+        static void Main()
+        {
+            Student std = new Student();
+            std.RollNo = 10;
+            std.Name = "Mr.A";
+            std.English = 90;
+            std.Maths = 88;
+            std.Science = 55;
+            Console.WriteLine("Roll : " + std.RollNo);
+            Console.WriteLine("Name : " + std.Name);
+            Console.WriteLine("Maths : " + std.Maths);
+            Console.WriteLine("English : " + std.English);
+            Console.WriteLine("Science : " + std.Science);
+            Console.WriteLine("Total : " + std.Total);
+            Console.WriteLine("Percent : " + std.Percent);
+            Console.WriteLine("Grade :  " + std.Grade);
+
+            Student std1 = new Student(20, "Mr.T", 88, 77, 66);
+            std1.PrintStudent();
+            std.PrintStudent();
+        }
+    }
+
+
+Object Initialization using Properties 
+===============================================================
+In case, you haven't created constructors in your "class" then you cannot initialize fields with your "input".
+
+ The Object Initialization address this issue. You don't have to create  constructors when you've "Properties" with "set" accessor.
+
+
+ Syntax :
+ 
+       ClassName refVar = new ClassName()
+         {
+             Property1 = value1,
+             Property2 = value2,
+             .....
+          };  <----- Don't forget to terminate
+
+Example:
+
+Use previous "Student" code and write following statements in Main:
+
+           Student std = new Student()
+            {
+                 English=88, Name="Abc", Maths=88,
+                  Science =78,
+                   RollNo = 1
+            };
+            std.PrintStudent();
+           
+            new Student() 
+              { 
+               English = 77, 
+               Maths = 78, 
+               Science=98 
+               }.PrintStudent();  
+
+ 
+Auto-Implemented Properties
+-----------------------------------------------------------------
+The C# will take care to create "fields" when you use "Auto-Implemented" properties.
+
+   Syntax:
+
+   access  DataType PropertyName {get; set;}
+      
+       put ; (semi-colon) after get and set
+
+
+public class Product
+{
+   public int ID {get;set;}
+   public string Name {get;set;}
+   public int Qty {get;set;}
+   public double Rate {get;set;}
+   public double Amount {get { return Rate * Qty; }}
+}
+
+code in Main:
+
+  Product pen = new Product()
+      {
+         ID = 1,
+         Name = "Rotomac .45",
+         Qty = 10,
+         Rate= 3.5
+        };
+  Console.WriteLine(pen.Qty + " " 
+                    + pen.Name 
+                    + " @" 
+                    + pen.Rate 
+                    + " will cost Rs. " 
+                    +  pen.Amount);
