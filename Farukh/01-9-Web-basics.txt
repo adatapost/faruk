@@ -1,0 +1,162 @@
+HTML and CSS - HyperText Markup Language and Cascade Stylesheet
+=====================================================================
+  HTML is created using Standard Generalize Markup Language (SGML) to   represent the "data" on web.
+
+  The SGML is mother language of HTML, XML and other markup languages.
+
+  The SGML and other markup language are documented and recommended by the World Wide Web Consortium -- W3C, the web-standard consortium. (visit www.w3c.org for more info).
+
+   What is XML (Extensible Markup Language)?
+
+   XML is markup language to create new markup language and new markup
+   language is for describing data and data-structure.
+
+ HTML and Web-browser
+ --------------------
+
+  What is "web-browser"?
+
+      The web-browser is the complex software in your machine. The web-browser is made up of number of "tools" and "programs" including :
+
+      1. Graphics Library
+      2. HTML parsers -- To validate, verify the HTML tags and convert
+			 these tags in to Objects.
+      3. To set style attributes like font, color, background to HTML
+         objects.
+      4. JavaScript Language
+      5. CSS Modules -- To set styles of HTML objects
+      6. XML parsers - To read, verify and validate XML documents.
+      7. Document Object Model (DOM)  and so on.
+      8. To request the resources (pages/programs/images/video etc)
+    
+ Structure of web-page
+ ======================
+ <!doctype html>
+
+ <html lang="en">
+    <head>
+       <title>
+           This title will be displayed at web-browser's windows
+        </title>
+    </head>
+    <body>
+        <div>
+            <h1>Sample Page</h1>
+        </div>
+    </body>
+ </html>
+
+1. <!doctype html> 
+
+    This is an instruction for web-browser to start the processing HTML     tags in "Standard Mode". In standard mode, HTML tags will be     parsed and processed using current HTML standard (Current standard     is HTML5). 
+
+    If <!doctype> is missing then your web-browser will parse and process HTML tags in "Quirk Mode" which surprize you each time by rendering the content differently on different web-browsers.
+
+
+2. <head> tag
+
+   In this tag, you can instruct the web-browsers and search engines    (google, bing, yahoo) about page and its content.     
+
+   An expert web-developer alway add following entries inside the 
+   <head> tag.
+
+    <head>
+        <title>Hello World</title>
+        <meta charset="utf-8"/>
+        <meta name="description" content="Describe your page in 3 to 4                                           lines"/> 
+        <meta name="keywords" content="help, study, classes, learn"/>
+        
+        <link rel="stylesheet"
+              href="style.css"/>
+        <script src="file.js"></script>
+    </head>
+
+    The <meta/> tag instruct the web-browser and search-engines or     crawlers about page characterset and content.
+  
+    The <link/> tag will be used to read Cascade Stylesheet from
+    specified "url" (file).
+
+    The <script> tag will be used to write JavaScript language code
+    and also include JavaScript code files.
+
+3. <body> tag
+
+    Any thing you wish to display on web-browser, you could write     inside the <body>.
+
+    There are some document structure tags in HTML to define the     structure of web-document. 
+
+    These tags are :
+  
+        html, body, div, header, footer, nav, section, article, aside,
+        form, table, h1, h2, h3, h4, h5, and h6.
+
+TYPES of HTML tags
+====================================================================
+There are two types of HTML tags:
+  
+  1. Block elements (tags)
+
+  2. Inline elements (tags)
+
+Block Elements are placed line by line where "width" value of block-elements depends upon the width of its parent element.
+
+Inline Elements are placed just like a text in notepad - One after one or text-flow. Inline element's height and width will be calculated as per their content and we cannot set height/width manually.
+
+
+Basic understandng of tags
+===================================================================
+The  header, footer, nav, aside, article, section are HTML5 tags to structure the document.
+
+<!doctype html>
+
+<html lang="en">
+    <head>
+       <title>Sample</title>
+    </head>
+    <body>
+       <div>
+          <header>
+              <h1>Site Title</h1>
+          </header>
+          <nav>
+              <a href="#">Home</a>
+              <a href="#">About us</a>
+          </nav>
+          <section>
+              <article><h1>About HTML... </h1></article>
+          </section>
+          <section>
+              <article>
+                   <header>
+                       <h1>About CSS... </h1>
+                   </header>
+                   <section>
+                      <p>The CSS is core component of web-design. </p>
+                   </section>
+                </article>
+          </section>
+          <footer>
+               <p>
+                  This is the footer.
+                </p>
+          </footer>
+       <div>
+    </body>
+ </html>
+   
+Example: Understanding block and inline elements
+
+  html, body, div, header, footer, section, aside, nav, article, table, form, h1..h6, fieldset, ul, ol, pre, p, backquote,address are block elements.
+
+  code, em, strong, q, i, b, u, abbr, label, span are example of inline elements.
+
+
+<!doctype html>
+
+ <h1>Hello</h1> <h1>Hi</h1>
+         
+ <div>This is block</div> <p>Block</p>
+
+ <p>This <em>is</em> the <strong>best</strong> moive I've seen is <q>Sheep of Thesus</q>. I love this movie. </p>
+     
+ 
